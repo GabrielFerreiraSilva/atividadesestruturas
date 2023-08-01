@@ -28,10 +28,8 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho06{
 	@Override
 	public Object getLista() {
 		
-		// DEVE RETORNAR O ELEMENTO OU O TAD
+		return this.inicio;
 		
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -73,14 +71,49 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho06{
 
 	@Override
 	public ITAD get(int posicao) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(posicao >= 0 && posicao < quantidade) {
+			
+			GabrielFerreiraDaSilvaElemento cursor = inicio;
+			
+			for(int i = 0; i < posicao; i++) {
+				
+				cursor = cursor.getNext();
+				
+			}
+			
+			return cursor.getTad();
+			
+		}
+		else {
+			
+			return null;
+			
+		}
+		
 	}
 
 	@Override
 	public String print() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String msg = "Pilha Dinamica: ";
+		
+		if(inicio != null) {
+			
+			GabrielFerreiraDaSilvaElemento cursor = inicio;
+			
+			while(cursor != null) {
+				
+				msg += "\n" + cursor.getTad().print();
+				
+				cursor = cursor.getNext();
+				
+			}
+			
+		}
+		
+		return msg;
+		
 	}
 
 }
