@@ -28,7 +28,7 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho04{
 	@Override
 	public Object getLista() {
 		
-		return inicio.getTad();	
+		return inicio;	
 		
 	}
 
