@@ -83,7 +83,7 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho03{
 	@Override
 	public ITAD get(int posicao) {
 		
-		if(posicao >= 0 && posicao < quantidade) {
+		if(posicao >= 0 && quantidade < fila.length) {
 			
 			return fila[posicao];
 			

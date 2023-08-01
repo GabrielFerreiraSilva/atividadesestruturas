@@ -54,8 +54,6 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho06{
 			
 			inicio = inicio.getNext();
 			
-			// DEVE FICAR NULL? VEJA ISSO NA PILHA DINAMICA TAMBEM
-			
 			quantidade--;
 			
 			return retorno.getTad();
@@ -111,6 +109,11 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho06{
 			}
 			
 		}
+		else{
+            
+            msg += "\n[null]";
+            
+        }
 		
 		return msg;
 		

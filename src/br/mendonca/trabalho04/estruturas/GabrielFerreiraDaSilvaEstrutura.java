@@ -124,6 +124,11 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho04{
 			}
 			
 		}
+		else{
+
+            msg += "\n[null]";
+
+        }
 		
 		return msg;
 		
