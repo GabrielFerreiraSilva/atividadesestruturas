@@ -44,7 +44,6 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho08{
 	}
 
 	@Override
-	// É igual mesmo??????
 	public void inserirNoFim(ITAD tad) {
 		GabrielFerreiraDaSilvaElemento novo = new GabrielFerreiraDaSilvaElemento(tad);
 		
@@ -65,47 +64,127 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho08{
 
 	@Override
 	public void inserirNoMeio(ITAD tad, int posicao) {
-		// Não faz sentido!!!
-		// Vai deixar inserir em posição que não existe
-		if(posicao < 1) this.inserirNoIncio(tad);
-		if(posicao >= quantidade) this.inserirNoFim(tad);
-		
-		GabrielFerreiraDaSilvaElemento novo = new GabrielFerreiraDaSilvaElemento(tad);
-		GabrielFerreiraDaSilvaElemento cursor = this.inicio;
-		GabrielFerreiraDaSilvaElemento anterior = cursor;
-		
-		for(int i = 0; i < posicao; i++) {
-			anterior = cursor;
-			cursor = (GabrielFerreiraDaSilvaElemento) cursor.getNext();
+		if(posicao >= 0 && posicao < quantidade) {
+			GabrielFerreiraDaSilvaElemento novo = new GabrielFerreiraDaSilvaElemento(tad);
+			
+			if (posicao == 0) {
+	            if (quantidade == 0) {
+	                inicio = novo;
+	                novo.setNext(inicio);
+	            } else {
+	                GabrielFerreiraDaSilvaElemento cursor = inicio;
+	                while (cursor.getNext() != inicio) {
+	                    cursor = (GabrielFerreiraDaSilvaElemento) cursor.getNext();
+	                }
+	                novo.setNext(inicio);
+	                inicio = novo;
+	                cursor.setNext(inicio);
+	            }
+	        }
+			else {
+				GabrielFerreiraDaSilvaElemento cursor = inicio;
+	            for (int i = 0; i < posicao - 1; i++) {
+	                cursor = (GabrielFerreiraDaSilvaElemento) cursor.getNext();
+	            }
+	            novo.setNext(cursor.getNext());
+	            cursor.setNext(novo);
+	        }
+
+	        quantidade++;
 		}
-		
-		novo.setNext(cursor);
-		anterior.setNext(novo);
-		quantidade++;
 	}
 
 	@Override
 	public ITAD removerNoInicio() {
-		// TODO Auto-generated method stub
-		return null;
+		GabrielFerreiraDaSilvaElemento retorno = inicio;
+
+        if (inicio.getNext() == inicio) {
+            inicio = null;
+        } else {
+        	GabrielFerreiraDaSilvaElemento cursor = inicio;
+            while (cursor.getNext() != inicio) {
+                cursor = (GabrielFerreiraDaSilvaElemento) cursor.getNext();
+            }
+            inicio = (GabrielFerreiraDaSilvaElemento) inicio.getNext();
+            cursor.setNext(inicio);
+        }
+
+        quantidade--;
+        return retorno.getTad();
 	}
 
 	@Override
 	public ITAD removerNoFim() {
-		// TODO Auto-generated method stub
-		return null;
+		if(quantidade > 0) {
+			GabrielFerreiraDaSilvaElemento retorno = inicio;
+			if(quantidade == 1) {
+				retorno = inicio;
+				inicio = null;
+			}
+			else {
+				GabrielFerreiraDaSilvaElemento cursor = inicio;
+				GabrielFerreiraDaSilvaElemento anterior = inicio;
+				while(cursor.getNext() != inicio) {
+					anterior = cursor;
+					cursor = (GabrielFerreiraDaSilvaElemento) cursor.getNext();
+				}
+				retorno = cursor;
+				anterior.setNext(inicio);
+			}
+			quantidade--;
+			return retorno.getTad();
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override
 	public ITAD removerNoMeio(int posicao) {
-		// TODO Auto-generated method stub
-		return null;
+		if(quantidade > 0 && posicao >= 0 && posicao < quantidade) {
+			GabrielFerreiraDaSilvaElemento retorno = inicio;
+	        if (posicao == 0) {
+	        	GabrielFerreiraDaSilvaElemento cursor = inicio;
+	        	while(cursor.getNext() != inicio) {
+	        		cursor = (GabrielFerreiraDaSilvaElemento) cursor.getNext();
+	        	}
+	        	inicio = (GabrielFerreiraDaSilvaElemento) inicio.getNext();
+	        	cursor.setNext(inicio);
+	        } else {
+	        	GabrielFerreiraDaSilvaElemento cursor = inicio;
+	        	GabrielFerreiraDaSilvaElemento anterior = inicio;
+	        	
+	        	for(int i = 0; i < posicao; i++) {
+	        		anterior = cursor;
+	        		cursor = (GabrielFerreiraDaSilvaElemento) cursor.getNext();
+	        	}
+
+	            retorno = cursor;
+	            anterior.setNext(cursor.getNext());
+	        }
+
+	        quantidade--;
+	        return retorno.getTad();
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override
 	public ITAD get(int posicao) {
-		// TODO Auto-generated method stub
-		return null;
+		if(posicao >= 0) {
+			int posicaoReal = posicao % quantidade;
+			GabrielFerreiraDaSilvaElemento cursor = inicio;
+			
+			for(int i = 0; i < posicaoReal; i++) {
+				cursor = (GabrielFerreiraDaSilvaElemento) cursor.getNext();
+			}
+			return cursor.getTad();
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override

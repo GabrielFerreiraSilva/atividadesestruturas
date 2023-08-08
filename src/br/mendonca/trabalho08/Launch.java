@@ -37,18 +37,23 @@ public class Launch {
 		lista.inserirNoIncio(testeTAD);
 		System.out.println(lista.print());
 		System.out.println(" ");
-		lista.inserirNoIncio(testeTAD1);
-		System.out.println(lista.print());
-		System.out.println(" ");
-		lista.inserirNoIncio(testeTAD2);
-		System.out.println(lista.print());
-		System.out.println(" ");
-		lista.inserirNoMeio(testeTAD3, 1);
+		
+		lista.inserirNoFim(testeTAD1);
 		System.out.println(lista.print());
 		System.out.println(" ");
 		
-
 		
+		lista.inserirNoMeio(testeTAD3, 0);
+		System.out.println(lista.print());
+		System.out.println(" ");
+		
+		lista.inserirNoMeio(testeTAD4, 2);
+		System.out.println(lista.print());
+		System.out.println(" ");
+		
+		System.out.println(lista.get(8).print());
+		System.out.println(" ");
+	
 	
 	}
 	
