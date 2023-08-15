@@ -145,8 +145,7 @@ public class GabrielFerreiraDaSilvaEstrutura implements ITrabalho11{
 
 	@Override
 	public void setItem(ITAD tad, int posicao) {
-		// VEJA MELHOR ISSO DEPOIS
-		inserirNoMeio(tad, posicao);
+		lista[posicao] = (GabrielFerreiraDaSilvaTAD) tad;
 	}
 	
 }
